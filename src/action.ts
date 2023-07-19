@@ -17,6 +17,7 @@ export default async function action() {
 			break;
 		case "semver":
 			debug("Using semver");
+			console.log("Incrementing with %s", value);
 			await semver(value, token, repository);
 			break;
 		case "commit":
