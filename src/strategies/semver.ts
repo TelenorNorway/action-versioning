@@ -1,7 +1,7 @@
 import { error, notice, setOutput } from "@actions/core";
 import { exec } from "@actions/exec";
 import { debug } from "console";
-import { compare, inc } from "semver";
+import { compare, inc, parse } from "semver";
 
 const REGEX = /^([0-9]+\.[0-9]+\.[0-9]+)$/g;
 
@@ -37,8 +37,14 @@ export default async function commit(
 	}
 	debug("Max version is v" + max);
 	setOutput("deploy", "yes");
-	setOutput("version", "v" + inc(max, increment));
-	notice("New version is v" + max);
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+	const newVersion = parse(max)?.inc?.(increment) || undefined;
+	if (!newVersion) {
+		throw new Error("Could not increment version!");
+	}
+	console.log("new version = v%s", newVersion);
+	setOutput("version", "v" + newVersion);
+	notice("New version is v" + newVersion);
 }
 
 async function getTags(token: string, repository: string): Promise<string[]> {
