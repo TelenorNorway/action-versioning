@@ -31,8 +31,10 @@ export default async function commit(
 	let max = versions[0];
 	for (let i = 1; i < versions.length; i++) {
 		const version = versions[i];
+		console.log("Comparing %s and %s", version, max);
 		if (compare(version, max) === 1) {
 			max = version;
+			console.log("Winner is %s", max);
 		}
 	}
 	debug("Max version is v" + max);
