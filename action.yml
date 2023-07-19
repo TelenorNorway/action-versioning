@@ -1,0 +1,21 @@
+name: Versioning
+description: Easily manage versioning for your repository
+runs:
+  using: "node16"
+  main: "dist/main.js"
+inputs:
+  token:
+    required: true
+    description: The Github token
+  repository:
+    required: true
+    description: The repository to version on
+  strategy:
+    required: true
+    description: |
+      - `commit`: Read the `value` input as a commit message, must start with v=x.y.z where xyz are the major, minor and patch versions.
+      - `semver`: Read the `value` as `major`, `minor` or `patch` and take the highest semver version of the repository and increment it using the value.
+      - `exact`: Output the `value` as the new version.
+  value:
+    required: true
+    description: The value to pass to the selected strategy.
