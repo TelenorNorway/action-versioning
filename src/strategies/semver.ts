@@ -1,7 +1,7 @@
 import { error, notice, setOutput } from "@actions/core";
 import { exec } from "@actions/exec";
 import { debug } from "console";
-import { compare } from "semver";
+import { compare, inc } from "semver";
 
 const REGEX = /^([0-9]+\.[0-9]+\.[0-9]+)$/g;
 
@@ -36,7 +36,7 @@ export default async function commit(
 		}
 	}
 	setOutput("deploy", "yes");
-	setOutput("version", "v" + max);
+	setOutput("version", "v" + inc(max, increment));
 	notice("New version is v" + max);
 }
 
