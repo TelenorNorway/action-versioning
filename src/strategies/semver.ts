@@ -1,5 +1,6 @@
 import { error, notice, setOutput } from "@actions/core";
 import { exec } from "@actions/exec";
+import { debug } from "console";
 import { compare } from "semver";
 
 const REGEX = /^([0-9]+\.[0-9]+\.[0-9]+)$/g;
@@ -57,6 +58,7 @@ async function getTags(token: string, repository: string): Promise<string[]> {
 		error(out);
 		throw new Error("Could not list tags");
 	}
+	debug(out);
 	return out
 		.split(/[\r\n]+/g)
 		.map((line) => line.substring(59))
