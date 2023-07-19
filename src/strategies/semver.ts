@@ -35,6 +35,7 @@ export default async function commit(
 			max = version;
 		}
 	}
+	debug("Max version is v" + max);
 	setOutput("deploy", "yes");
 	setOutput("version", "v" + inc(max, increment));
 	notice("New version is v" + max);
