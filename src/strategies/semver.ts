@@ -61,7 +61,6 @@ async function getTags(token: string, repository: string): Promise<string[]> {
 	debug(out);
 	return out
 		.split(/[\r\n]+/g)
-		.map((line) => line.substring(42))
-		.map((line) => (console.log(line), line))
+		.map((line) => line.substring(52))
 		.filter((tag) => REGEX.test(tag));
 }
