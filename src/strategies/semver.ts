@@ -1,9 +1,9 @@
 import { error, notice, setOutput } from "@actions/core";
 import { exec } from "@actions/exec";
 import { debug } from "console";
-import { compare, inc, parse } from "semver";
+import { compare, parse } from "semver";
 
-const REGEX = /^([0-9]+\.[0-9]+\.[0-9]+)$/g;
+const REGEX = /^([0-9]+\.[0-9]+\.[0-9]+)$/;
 
 export default async function commit(
 	increment: string,
